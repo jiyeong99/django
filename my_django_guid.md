@@ -1,19 +1,16 @@
 # django guide
 ## 1. 프로젝트 폴더 생성
-<br>
 ```bash
 mkdir test-pjt
 ```
 
 ## 2. 가상환경 생성
-<br>
 ```bash
 python -m venve .venv
 ls
 ```
 
 ## 3. 가상환경 활성화
-<br>
 ```bash
 source .venv/Scripts/activate
 ```
