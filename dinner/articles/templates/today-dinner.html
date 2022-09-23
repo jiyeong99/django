@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>저녁 뭐 먹지</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            margin-left: 10rem;
+            margin-right: 10rem;
+            margin-top: 2rem;
+            margin-bottom: 5rem;
+            align-items: center;
+        }
+        .btn-style {
+            width: 10rem;
+            height: 10rem;
+            border-radius: 50%;
+            margin-bottom: 5rem;
+            background-color: brown;
+
+            font-size: xx-large;
+            font-weight: bold;
+            color: whitesmoke;
+        }
+        .para {
+            font-size: xx-large;
+            text-align: center;
+        }
+        .menu-name {
+            color: red;
+        }
+        .img-round {
+            width: 20rem;
+            height: 20rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>저녁 메뉴 추첨</h1>
+        <button onclick="window.location.reload()" class="btn-style"> 뭐 먹지?</button>
+        <div>
+            <p class="para">오늘은 <b class="menu-name">{{ name }}</b> 어때요?</p>
+            <!-- <p>{{ food }}</p> -->
+            <img src="{{ food }}" class="img-round">
+        </div>
+    </div>
+</body>
+</html>
