@@ -5,9 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <title>lotto</title>
     <style>
+        .container {
+            margin-left: 10rem;
+            margin-right: 10rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
         .btn-style {
             width: 10rem;
             height: 10rem;
@@ -16,43 +22,15 @@
             color: aliceblue;
             font-size: xx-large;
             font-weight: bold;
-            margin-bottom: 3rem;
-        }
-        .six_balls {
-            display: flex;
-            flex-direction: row;
-            border: black;
-            background-color: aqua;
-
-        }
-        .ball {
-            width: 5rem;
-            height: 5rem;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: xx-large;
-            margin-left: 1rem;
-            margin-right: 1rem;
         }
     </style>
 </head>
 <body>
-    <div class="container d-flex flex-column align-items-center">
+    <div class="container">
         <h1>숫자 추첨</h1>
         <button onclick="window.location.reload()" class="btn-style"> 추첨</button>
-        {% for lotto in number %}
-            <div class="six_balls">
-                {% for num in lotto %}
-                    <div class="rounded-circle border-2 border-secondary-2 p-5 text-bg-light">
-                        {{ num }}
-                    </div>
-                {% endfor %}
-            </div>
-            <br>
-        {% endfor %}
+        <p> {{number_1}}</p> <p> {{number_2}}</p> <p> {{number_3}}</p> <p> {{number_4}}</p> <p> {{number_5}}</p> <p> {{number_6}}</p>
+        
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
