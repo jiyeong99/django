@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- pk 값 -->
+<form action="{% url 'posts:create' %}" method="GET">
+<!-- <form> -->
+    <h1>할 일 추가</h1>
+    <br>내용 : <input type="text" name="content">
+    <br>완료여부 : <input type="" name="completed">
+    <br>우선순위 : <input type="number" name="priority" min="1" max="5">
+    <br>생성 날짜 : <input type="date" name="created_at">
+    <br>마감 날짜 : <input type="date" name="deadline">
+    <br><input type="submit">
+</form>
+
+<a href="{% url 'posts:index' %}">홈</a>
+{% endblock content%}

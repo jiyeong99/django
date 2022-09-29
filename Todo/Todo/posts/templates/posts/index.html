@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1> 게시판 </h1>
+<a href="{% url 'posts:new'%}"> 내용 생성</a>
+<br><a href=""> 할 일 목록</a>
+<div class="">
+    {% for post in posts %}
+    <p>{{ post.id }}|{{ post.content }}|{{ post.completed }}|{{ post.priority }}|{{ post.created_at }}|{{ post.deadline }}</p>
+    {% endfor %}
+</div>
+{% endblock content %}
