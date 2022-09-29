@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1> 글 수정하기 </h1>
+<form action="{% url 'posts:update' post.pk %}">
+    <br>내용 : <input type="text" name="content" value="{{ post.content }}">
+    <br>완료여부 : <input type="" name="completed" value="{{ post.completed }}">
+    <br>우선순위 : <input type="number" name="priority" value="{{ post.priority }}">
+    <br>생성 날짜 : <input type="date" name="created_at" value="{{ post.created_at }}">
+    <br>마감 날짜 : <input type="date" name="deadline" value="{{ post.deadline }}">
+    <br><input type="submit">
+</form>
+<a href="{% url 'posts:index' %}">홈</a>
+{% endblock content %}

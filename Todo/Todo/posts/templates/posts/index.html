@@ -3,9 +3,13 @@
 <h1> 게시판 </h1>
 <a href="{% url 'posts:new'%}"> 내용 생성</a>
 <br><a href=""> 할 일 목록</a>
-<div class="">
+<ul class="list-group">
     {% for post in posts %}
-    <p>{{ post.id }}|{{ post.content }}|{{ post.completed }}|{{ post.priority }}|{{ post.created_at }}|{{ post.deadline }}</p>
+    <li class="list-group-item"> id : {{ post.id }}
+        <a href="{% url 'posts:detail' post.pk %}"> detail </a>
+        <a href="{% url 'posts:edit' post.pk %}"> 수정</a>
+        <a href="{% url 'posts:delete' post.pk %}"> 삭제</a>
+    </li>
     {% endfor %}
-</div>
+</ul>
 {% endblock content %}
