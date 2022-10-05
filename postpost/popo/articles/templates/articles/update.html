@@ -3,4 +3,8 @@
     {% csrf_token %}
     {{ article_form.as_p }}
     <input type="submit" value="수정">
+    <button>
+        <a href="{% url 'articles:index' %}"> 홈 </a>
+    </button>
+    
 </form>
