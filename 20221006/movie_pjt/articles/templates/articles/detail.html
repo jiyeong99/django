@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="position-relative">
+    <h1>{{ movie.title }}</h1>
+    <div class="position-absolute top-0 end-0">
+      <span class="badge text-bg-light fs-6">{{movie.running_time}}분</span>
+    </div>
+  </div>
+  <div class="" style="height: 100px;">
+    <p>
+      {{ movie.summary }}
+    </p>
+  </div>
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <a href="{% url 'articles:update' movie.pk%}" role="button" class="btn btn-outline-success">수정</a>
+    <form method="POST" action="{% url 'articles:delete' movie.pk %}">
+      {% csrf_token %}
+      <input type="submit" class="btn btn-outline-danger" value="삭제">
+    </form>
+  </div>
+  <br>
+</form>
+{% endblock content %}

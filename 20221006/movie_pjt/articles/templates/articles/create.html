@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+  <form action="{% url 'articles:create' %}" method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="" class="form-label fw-bold">Title</label>
+      {{ movie_form.title}}
+    </div>
+    <div class="mb-3">
+      <label for="" class="form-label fw-bold">Summary</label>
+      {{ movie_form.summary}}
+    </div>
+    <div class="mb-3">
+      <label for="" class="form-label fw-bold">Running Time</label>
+      {{ movie_form.running_time}}
+    </div>
+    <button type="submit" class="btn btn-primary">
+      추가
+    </button>
+  </form>
+{% endblock content %}
