@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content_account %}
+  <h1>{{ user.username }}의 프로필</h1><br>
+  <hr>
+  <h6>email :
+    {{ user.email }}
+  </h6>
+{% endblock content_account %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content_account %}
+  <br>
+  <hr>
+  accounts<br>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">pk</th>
+        <th scope="col">username</th>
+        <th scope="col">email</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for v in view %}
+        <tr>
+          <th scope="row">{{ v.pk }}</th>
+          <td>
+            <a href="{% url 'accounts:detail' v.pk %}">{{ v.username}}</a>
+          </td>
+          <td>{{ v.email }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock content_account %}
