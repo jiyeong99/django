@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>
+    accounts.index.html
+  </h1>
+  <hr>
+  {% if request.user.is_authenticated %}{% endif %}
+  {% for user in user_table %}
+    <a href="{% url 'accounts:detail' user.pk %}">
+      {{ user.username }}
+    </a>
+    <br>
+  {% endfor %}
+{% endblock content %}
