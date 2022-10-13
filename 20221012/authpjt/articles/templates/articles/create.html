@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% block content %}
+  <h1>
+    글 쓰기
+  </h1>
+  <form action="{% url 'articles:create' %}" method="POST">
+    {% csrf_token %}
+
+    <!-- # 미리 작성해 놓은 form 불러오세요 -->
+    {% bootstrap_form article_form %}
+    {% bootstrap_button 'ok' %}
+  </form>
+{% endblock %}

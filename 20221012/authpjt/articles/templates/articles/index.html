@@ -1,6 +1,38 @@
 {% extends 'base.html' %}
+
 {% block content %}
-  <h1>
-    articles.index.html
-  </h1>
-{% endblock content %}
+
+  {% if request.user.is_authenticated %}
+    <h1>
+      <a href="{% url 'articles:create' %}" class='btn btn-primary'>
+        글 쓰기
+      </a>
+    </h1>
+    <!-- 테이블 한줄씩 불러와요 -->
+  {% endif %}
+  <br>
+  <hr>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">title</th>
+        <th scope="col">created_at</th>
+        <th scope="col">updated_at</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for article in articles %}
+        <tr>
+          <th scope="row">{{ article.pk }}</th>
+          <td>
+            <a href="{% url 'articles:detail' article.pk %}">{{ article.title }}</a>
+          </td>
+          <td>{{ article.created_at }}</td>
+          <td>{{ article.updated_at }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

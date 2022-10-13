@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>{{ article.pk }}번 게시글</h1>
+  <hr>
+  <p>{{ article.created_at }}
+    |
+    {{ article.updated_at }}</p>
+  <p>
+    <hr>
+    title :
+    {{ article.title }}
+  </p>
+  <hr>
+  <p>content :
+    {{ article.content }}
+  </p>
+  <hr>
+  <a href="{% url 'articles:update' article.pk %}" class="btn btn-primary">수정하기</a>
+
+  <a href="{% url 'articles:delete' article.pk %}" class="btn btn-primary">삭제하기</a>
+{% endblock %}

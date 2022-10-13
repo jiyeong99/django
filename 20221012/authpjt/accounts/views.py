@@ -1,8 +1,8 @@
 from django.shortcuts import render,redirect
 # from .models import User
-from .forms import CustomUserCreationForm
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth import get_user_model
+from .forms import CustomUserChangeForm, CustomUserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
+from django.contrib.auth import get_user_model, update_session_auth_hash
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 
@@ -23,7 +23,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             auth_login(request, user)
-            return redirect('articels:index')
+            return redirect('articles:index')
     else:
         form = CustomUserCreationForm()
     context = {
@@ -54,3 +54,35 @@ def detail(request, pk):
         'user' : user
     }
     return render(request, 'accounts/detail.html', context)
+
+def update(request):
+    if request.method =='POST':
+        form = CustomUserChangeForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('accounts:detail', request.user.pk)
+    else:
+        form = CustomUserChangeForm(instance=request.user)
+    context = {
+        'form' : form,
+    }
+    return render(request, 'accounts/update.html', context)
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            return redirect('articles:index')
+    else:
+        form = PasswordChangeForm(request.user)
+    context = {
+        'form' : form,
+    }
+    return render(request, 'accounts/change_password.html', context)
+
+def delete(request):
+    request.user.delete()
+    auth_logout(request)
+    return redirect('articles:index')

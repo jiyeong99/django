@@ -2,10 +2,20 @@
 {% block content %}
   <h3>
     {{ user.username}}'s profile
+    <hr>
   </h3>
   <h4>
     email :
     {{ user.email }}
     <br>
+    <hr>
+    first-name :
+    {{ user.first_name}}
+    <br>
+    <hr>
+    last-name :
+    {{ user.last_name}}
+    <br>
+    <hr>
   </h4>
 {% endblock content %}
