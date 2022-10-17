@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
   <h1>articles.index</h1>
-  {% for article in articles %}
-    {{ article.pk}}|{{ article.title }}<br>
-    <hr>
-  {% endfor %}
+  <a href="{% url 'articles:create' %}" class='btn btn-primary'>글 작성
+  </a><br>
+  <hr>
+  <h3>
+
+    {% for article in articles %}
+      {{ article.pk}}|{{ article.title }}<br>
+      <hr>
+    {% endfor %}
+  </h3>
 {% endblock content %}
