@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+  <h1>articles.index</h1>
   {% for article in articles %}
     {{ article.pk}}|{{ article.title }}<br>
     <hr>
