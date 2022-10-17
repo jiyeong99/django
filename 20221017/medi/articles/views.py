@@ -32,3 +32,7 @@ def detail(request,pk):
         'article' : article,
     }
     return render(request,'articles/detail.html',context)
+
+def delete(request,pk):
+    Articles.objects.get(pk=pk).delete()
+    return redirect('articles:index')
