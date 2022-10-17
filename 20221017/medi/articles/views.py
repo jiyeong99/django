@@ -1,5 +1,5 @@
 from multiprocessing import context
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from .models import Articles
 from .forms import Articles, ArticleForm
 from django.contrib import messages
@@ -25,6 +25,21 @@ def create(request):
         'article_form': article_form
     }
     return render(request, 'articles/create.html', context=context)
+
+def update(request, pk):
+    article = get_object_or_404(Articles, pk=pk)
+    if request.method == 'POST':
+        form = ArticleForm(request.POST, request.FILES, instance=article)
+        if form.is_valid():
+            form.save()
+            return redirect('articles:index')
+    else:
+        form = ArticleForm(instance=article)
+    context = {
+        'article' : article,
+        'article_form' : form,
+    }
+    return render(request, 'articles/create.html',context)
 
 def detail(request,pk):
     article = Articles.objects.get(pk=pk)
