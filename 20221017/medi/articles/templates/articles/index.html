@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
 {% block content %}
   <h1>articles.index</h1>
   <a href="{% url 'articles:create' %}" class='btn btn-primary'>글 작성
@@ -12,7 +14,7 @@
         {{ article.title }}<br>
       </a>
       {% if article.tumbnail %}
-        <img src="{{ article.tumbnail.url }}" alt="{{article.tumbnail}}">
+        <img src="{{ article.tumbnail.url }}" alt="{{article.tumbnail}}" width="300" height="200">
       {% endif %}
       <hr>
     {% endfor %}
