@@ -1,8 +1,9 @@
+from multiprocessing import context
 from django.shortcuts import redirect, render
 from .models import Articles
 from .forms import Articles, ArticleForm
 from django.contrib import messages
-from medi.settings import BASE_DIR, STATIC_URL
+from medi.settings import BASE_DIR, STATIC_URL, MEDIA_URL
 
 def index(request):
     articles = Articles.objects.all()
@@ -24,3 +25,10 @@ def create(request):
         'article_form': article_form
     }
     return render(request, 'articles/create.html', context=context)
+
+def detail(request,pk):
+    article = Articles.objects.get(pk=pk)
+    context = {
+        'article' : article,
+    }
+    return render(request,'articles/detail.html',context)
