@@ -7,5 +7,6 @@
     {{ article.content }}
   </h2>
   <hr>
-  <img src="{{ article.image.url }}" alt="{{ article.image}}">
+  <img src="{{ article.image.url }}" alt="{{ article.image}}"><br>
+  <a href="{% url 'articles:delete' article.pk%}" class='btn btn-danger'>삭제</a>
 {% endblock content %}
