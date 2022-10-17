@@ -11,7 +11,9 @@
       <a href="{% url 'articles:detail' article.pk %}" class='text-decoration-none text-black'>
         {{ article.title }}<br>
       </a>
-      <img src="{{ article.tumbnail.url }}" alt="{{article.tumbnail}}">
+      {% if article.tumbnail %}
+        <img src="{{ article.tumbnail.url }}" alt="{{article.tumbnail}}">
+      {% endif %}
       <hr>
     {% endfor %}
   </h3>
