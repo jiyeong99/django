@@ -7,7 +7,11 @@
   <h3>
 
     {% for article in articles %}
-      {{ article.pk}}|{{ article.title }}<br>
+      {{ article.pk}}|
+      <a href="{% url 'articles:detail' article.pk %}" class='text-decoration-none text-black'>
+        {{ article.title }}<br>
+      </a>
+      <img src="{{ article.image.url }}" alt="{{article.image}}">
       <hr>
     {% endfor %}
   </h3>

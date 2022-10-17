@@ -8,5 +8,5 @@ class Articles(models.Model):
     image = models.ImageField(blank=True, upload_to='images/')
     tumbnail = ProcessedImageField(upload_to='images/', blank=True,
                                 processors=[ResizeToFill(1200, 960)],
-                                format='JPEG',
+                                format='png',
                                 options={'quality': 80})
