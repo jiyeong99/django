@@ -10,6 +10,11 @@
 
   <hr>
   <h3>댓글</h3>
+  <form action="{% url 'articles:detail' article.pk %}" method='POST' class='form-control'>
+    {% csrf_token %}
+    {{ comment_form.as_p}}
+    <input type="submit" value='댓글작성'>
+  </form>
   {% for comment in comments %}
     {{ comment.content }}
     <br>

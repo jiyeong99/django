@@ -13,9 +13,19 @@ def index(request):
 def detail(request,article_pk):
     article = Article.objects.get(pk=article_pk)
     comments = article.comment_set.all()
+    if request.method=='POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.article = article
+            comment.save()
+            return redirect('articles:detail', article_pk)
+    else:
+        comment_form = CommentForm()
     context = {
         'article' : article,
         'comments' : comments,
+        'comment_form' : comment_form,
     }
     return render(request, 'articles/detail.html', context)
 
