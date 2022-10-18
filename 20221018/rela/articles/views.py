@@ -8,3 +8,10 @@ def index(request):
         'articles' : articles,
     }
     return render(request, 'articles/index.html', context)
+
+def detail(request,pk):
+    article = Article.objects.get(pk=pk)
+    context = {
+        'article' : article,
+    }
+    return render(request, 'article/detail.html', context)
