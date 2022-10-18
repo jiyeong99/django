@@ -13,8 +13,9 @@ def index(request):
 def detail(request,article_pk):
     article = Article.objects.get(pk=article_pk)
     comments = article.comment_set.all()
+    
     if request.method=='POST':
-        comment_form = CommentForm(request.POST)
+        comment_form = CommentForm(request.POST,request.FILES)
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
             comment.article = article
@@ -31,7 +32,7 @@ def detail(request,article_pk):
 
 def create(request):
     if request.method == 'POST':
-        article_form = ArticleForm(request.POST)
+        article_form = ArticleForm(request.POST, request.FILES)
         if article_form.is_valid():
             article_form.save()
             return redirect('articles:index')

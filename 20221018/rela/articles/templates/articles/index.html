@@ -1,13 +1,29 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h1>article.index.html</h1>
-  <a href="{% url 'articles:create' %}" class="btn btn-primary">글 작성
-  </a><br>
-  <hr>
-  {% for article in articles %}
-    <a href="{% url 'articles:detail' article.pk %}">{{ article.title }}
-    </a>
-    <br>
-    <hr>
-  {% endfor %}
+  <h1 class='mx-5 mb-5'>게시판</h1>
+  <table class="table">
+    <thead>
+      <tr class='table-success'>
+        <th scope="col">
+          #
+        </th>
+        <th scope="col">제목</th>
+        <th scope="col">작성시간</th>
+        <th scope="col">수정시간</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for article in articles %}
+        <tr>
+          <th scope="row">{{ article.pk }}</th>
+          <td>
+            <a href="{% url 'articles:detail' article.pk %}" class='text-decoration-none link-dark'>{{ article.title }}
+            </a>
+          </td>
+          <td>{{ article.created_at}}</td>
+          <td>{{ article.updated_at}}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 {% endblock content %}

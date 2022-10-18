@@ -14,7 +14,10 @@
 
   <body>
     <div class="container mt-5">
-      <a href="{% url 'articles:index' %}" class='btn btn-success'>홈</a>
+      <div class="d-flex justify-content-between mb-5">
+        <a href="{% url 'articles:index' %}" class='btn btn-success'>홈</a>
+        <a href="{% url 'articles:create' %}" class="btn btn-primary">글 작성</a>
+      </div>
       {% block content %}{% endblock %}
     </div>
   </body>

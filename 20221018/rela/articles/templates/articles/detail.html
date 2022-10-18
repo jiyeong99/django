@@ -1,30 +1,55 @@
 {% extends 'base.html' %}
+{% load django_bootstrap5 %}
 {% block content %}
-  <h1>
-    title :
-    {{ article.title }}</h1>
+  <h1>{{ article.title }}</h1>
   <hr>
-  <h2>
-    content :
-    {{ article.content}}</h2>
+  <div class="box">
+    <p class='fw-semibold'>
+      {{ article.content}}
+    </p>
+    {% if article.image %}
+      <img src="{{ article.image.url }}" alt="{{ article.image}}">
+    {% endif %}
+  </div>
 
   <hr>
-  <h3>댓글</h3>
-  <form action="{% url 'articles:detail' article.pk %}" method='POST' class='form-control'>
+  <h3>댓글
+    <span class='text-black-50 fs-5'>{{comments|length}}</span>
+  </h3>
+
+  <form action="{% url 'articles:detail' article.pk %}" method='POST' class='' enctype='multipart/form-data'>
     {% csrf_token %}
-    {{ comment_form.as_p}}
-    <input type="submit" value='댓글작성'>
+    {% bootstrap_form comment_form %}
+    {% bootstrap_button '댓글작성'%}
   </form>
-  {% for comment in comments %}
-    {{ comment.pk }}
-    {{ comment.content }}
-    <a href="{% url 'articles:comment_delete' article.pk comment.pk %}" class='btn btn-danger'>삭제</a>
-    <br>
-    <hr>
-    {% empty %}
-    <h6>
-      댓글이 없습니다.
-    </h6>
-  {% endfor %}
+
+  <div class="mt-2">
+    {% for comment in comments %}
+      <div class="d-flex justify-content-between">
+        <div class="d-flex flex-column fw-bold">
+          {{ comment.pk }}
+          <br>
+          {{ comment.content }}
+          {% if comment.image %}
+            <br>
+            <div class="">
+              <img src="{{ comment.image.url }}" alt="{{comment.image}}">
+            </div>
+          {% endif %}
+        </div>
+        <div class="">
+          <span class='text-black-50'>
+            {{comment.created_at}}
+          </span>
+          <a href="{% url 'articles:comment_delete' article.pk comment.pk %}" class='text-danger'>삭제</a>
+        </div>
+      </div>
+      <hr>
+      {% empty %}
+      <h6>
+        댓글이 없습니다.
+      </h6>
+    {% endfor %}
+  </div>
 
 {% endblock content %}
