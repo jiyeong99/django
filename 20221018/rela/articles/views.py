@@ -41,3 +41,7 @@ def create(request):
         'article_form' : article_form,
     }
     return render(request, 'articles/create.html', context)
+
+def comment_delete(request, article_pk, cmt_pk):
+    Comment.objects.get(pk=cmt_pk).delete()
+    return redirect('articles:detail', article_pk)

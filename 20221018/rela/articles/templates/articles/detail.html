@@ -16,7 +16,9 @@
     <input type="submit" value='댓글작성'>
   </form>
   {% for comment in comments %}
+    {{ comment.pk }}
     {{ comment.content }}
+    <a href="{% url 'articles:comment_delete' article.pk comment.pk %}" class='btn btn-danger'>삭제</a>
     <br>
     <hr>
     {% empty %}
