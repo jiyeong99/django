@@ -7,4 +7,17 @@
   <h2>
     content :
     {{ article.content}}</h2>
+
+  <hr>
+  <h3>댓글</h3>
+  {% for comment in comments %}
+    {{ comment.content }}
+    <br>
+    <hr>
+    {% empty %}
+    <h6>
+      댓글이 없습니다.
+    </h6>
+  {% endfor %}
+
 {% endblock content %}
