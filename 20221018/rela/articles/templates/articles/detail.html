@@ -2,13 +2,24 @@
 {% load django_bootstrap5 %}
 {% block content %}
   <h1>{{ article.title }}</h1>
+  <p>
+    글쓴이 :
+    <a href="{% url 'accounts:detail' article.user.id %}">
+      {{ article.user.username }}
+    </a>
+  </p>
+  {% if request.user.pk == article.user.pk %}
+    <a href="{% url 'articles:update' article.pk%}"> 글 수정</a>
+  {% endif %}
   <hr>
   <div class="box">
     <p class='fw-semibold'>
       {{ article.content}}
     </p>
     {% if article.image %}
-      <img src="{{ article.image.url }}" alt="{{ article.image}}">
+      <div class="text-center">
+        <img src="{{ article.image.url }}" alt="{{ article.image}} class='mx-auto">
+      </div>
     {% endif %}
   </div>
 
@@ -16,18 +27,21 @@
   <h3>댓글
     <span class='text-black-50 fs-5'>{{comments|length}}</span>
   </h3>
-
-  <form action="{% url 'articles:detail' article.pk %}" method='POST' class='' enctype='multipart/form-data'>
-    {% csrf_token %}
-    {% bootstrap_form comment_form %}
-    {% bootstrap_button '댓글작성'%}
-  </form>
-
+  {% if request.user.is_authenticated %}
+    <form action="{% url 'articles:detail' article.pk %}" method='POST' class='' enctype='multipart/form-data'>
+      {% csrf_token %}
+      {% bootstrap_form comment_form %}
+      {% bootstrap_button '댓글작성'%}
+    </form>
+  {% endif %}
+{% comment %} display comments in article.detail {% endcomment %}
   <div class="mt-2">
     {% for comment in comments %}
       <div class="d-flex justify-content-between">
         <div class="d-flex flex-column fw-bold">
-          {{ comment.pk }}
+          <a href="{% url 'accounts:detail' comment.user_id %}">
+            {{ comment.user}}
+          </a>
           <br>
           {{ comment.content }}
           {% if comment.image %}

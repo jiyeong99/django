@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Article
 from .forms import Article, ArticleForm
-from authpjt.settings import BASE_DIR
 # Create your views here.
 # Create your views here.
 def index(request):
