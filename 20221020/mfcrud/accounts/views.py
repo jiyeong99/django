@@ -5,6 +5,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import get_user_model
+from articles.models import Article, Comment
 
 # Create your views here.
 def index(request):
@@ -47,7 +48,12 @@ def logout(request):
 
 def detail(request, user_pk):
     user_detail = get_user_model().objects.get(pk=user_pk)
+    user_articles = user_detail.article_set.all()
+    user_comments = user_detail.comment_set.all()
+
     context = {
         'user_detail' : user_detail,
+        'user_articles' : user_articles,
+        'user_comments' : user_comments,
     }
     return render(request, 'accounts/detail.html', context)

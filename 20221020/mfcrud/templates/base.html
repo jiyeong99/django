@@ -11,6 +11,14 @@
   </head>
 
   <body>
+    <h1>
+      hello,{{user}}
+    </h1>
+    <a href="{% url 'articles:index' %}">articles.index</a>
+    <a href="{% url 'accounts:index' %}">accounts.index</a>
+    <a href="{% url 'accounts:signup' %}">signup</a><br>
+    <a href="{% url 'accounts:login' %}">login</a><br>
+    <a href="{% url 'accounts:logout' %}">logout</a><br>
     {% block content %}{% endblock content %}
   </body>
 

@@ -2,5 +2,27 @@
 {% block content %}
   <h1>detail.html
   </h1>
-  {{article.pk}}
+  <p>
+    {{ article.pk }}
+  </p>
+  <p>{{ article.title }}</p>
+  <p>{{ article.content }}</p>
+  {% if article.image %}
+    <p><img src="{{ article.image.url}}" alt="{{article.image}}"></p>
+  {% endif %}
+  <p>
+    <a href="{% url 'articles:update' article.pk %}">수정하기</a>
+  </p>
+  <p>
+    <a href="{% url 'articles:comment_create' article.pk%} ">댓글작성</a>
+  </p>
+  {% for comment in comments %}
+    {{comment.user}}
+    :
+    {{comment.content}}
+    <form action="{% url 'articles:comment_delete' article.pk comment.pk %}" method='POST'>
+      {% csrf_token %}
+      <input type="submit" value='삭제'>
+    </form>
+  {% endfor %}
 {% endblock content %}

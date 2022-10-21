@@ -1,5 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
-  {{ user_detail.pk}}
-  {{ user_detail.username}}
+  <hr>
+  <h1>
+    {{ user_detail.pk}}
+    {{ user_detail.username}}
+  </h1>
+  <hr>
+  <p>articles</p>
+  {% for article in user_articles %}
+    {{article.title}}
+    <br>
+  {% endfor %}
+  <hr>
+  <p>comments</p>
+  {% for comment in user_comments %}
+    {{comment.content}}<br>
+  {% endfor %}
 {% endblock content %}

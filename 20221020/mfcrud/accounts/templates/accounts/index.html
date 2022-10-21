@@ -1,11 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
   <h1>accounts.index</h1>
-  <h1>HELLO,
-    {{ request.user }}</h1>
-  <a href="{% url 'accounts:signup' %}">signup</a><br>
-  <a href="{% url 'accounts:login' %}">login</a><br>
-  <a href="{% url 'accounts:logout' %}">logout</a><br>
   {% for user in users %}
     <a href="{% url 'accounts:detail' user.pk %}">
       {{ user.username }}
